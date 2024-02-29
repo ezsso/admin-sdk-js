@@ -32,13 +32,10 @@ describe('authn', async function() {
 
 	it('del', async function () {
 		const delAuthN = await this.ezssoAdmin.authn.del(this.newAuthN.id);
-		debug('delAuthN:', delAuthN);
 
 		this.allAuthNs = await this.ezssoAdmin.authn.ls();
-		debug('allAuthNs:', this.allAuthNs);
 
 		const filtered = this.allAuthNs.filter(authn => authn.id == this.newAuthN.id);
-		debug('filtered:', filtered);
 		expect(filtered.length).to.equal(0);
 	});
 

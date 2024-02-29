@@ -1,6 +1,6 @@
 {
   "name": "@ezsso/admin",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "EZSSO Admin SDK",
   "config": {
     "main": "index.js"
