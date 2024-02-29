@@ -30,6 +30,11 @@ describe('authn', async function() {
 		expect(filtered[0]?.id).to.equal(this.newAuthN.id);
 	});
 
+	it('get', async function () {
+		const authN = await this.ezssoAdmin.authn.get(this.newAuthN.id);
+		expect(authN.id).to.equal(this.newAuthN.id);
+	});
+
 	it('del', async function () {
 		const delAuthN = await this.ezssoAdmin.authn.del(this.newAuthN.id);
 
