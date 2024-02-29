@@ -20,29 +20,24 @@ describe('authn', async function() {
 	});
 
 	it('ls', async function () {
-		const authns = await this.ezssoAdmin.authn.ls();
+		this.allAuthNs = await this.ezssoAdmin.authn.ls();
 	});
 
 	it('new', async function () {
-		const newAuthN = await this.ezssoAdmin.authn.new();
-		const allAuthNs = await this.ezssoAdmin.authn.ls();
-		const filtered = allAuthNs.filter(authn => authn.id == newAuthN.id);
-		expect(filtered[0]?.id).to.equal(newAuthN.id);
+		this.newAuthN = await this.ezssoAdmin.authn.new();
+		this.allAuthNs = await this.ezssoAdmin.authn.ls();
+		const filtered = this.allAuthNs.filter(authn => authn.id == this.newAuthN.id);
+		expect(filtered[0]?.id).to.equal(this.newAuthN.id);
 	});
 
 	it('del', async function () {
-		const newAuthN = await this.ezssoAdmin.authn.new();
-		let allAuthNs = await this.ezssoAdmin.authn.ls();
-		let filtered = allAuthNs.filter(authn => authn.id == newAuthN.id);
-		expect(filtered[0]?.id).to.equal(newAuthN.id);
-
-		const delAuthN = await this.ezssoAdmin.authn.del(newAuthN.id);
+		const delAuthN = await this.ezssoAdmin.authn.del(this.newAuthN.id);
 		debug('delAuthN:', delAuthN);
 
-		allAuthNs = await this.ezssoAdmin.authn.ls();
-		debug('allAuthNs:', allAuthNs);
+		this.allAuthNs = await this.ezssoAdmin.authn.ls();
+		debug('allAuthNs:', this.allAuthNs);
 
-		filtered = allAuthNs.filter(authn => authn.id == newAuthN.id);
+		const filtered = this.allAuthNs.filter(authn => authn.id == this.newAuthN.id);
 		debug('filtered:', filtered);
 		expect(filtered.length).to.equal(0);
 	});
